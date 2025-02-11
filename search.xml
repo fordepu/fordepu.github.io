@@ -19,20 +19,19 @@
 ]]></content>
   </entry>
   <entry>
-    <title>测试分类功能</title>
-    <url>/2025/02/11/%E6%B5%8B%E8%AF%95%E5%88%86%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="测试分类功能"><a href="#测试分类功能" class="headerlink" title="测试分类功能"></a>测试分类功能</h1><p>这篇文章用于测试 Hexo 的分类功能是否正常工作。</p>
-<h2 id="分类1"><a href="#分类1" class="headerlink" title="分类1"></a>分类1</h2><p>这篇文章属于 <strong>分类1</strong> 和 <strong>分类2</strong>。你可以通过访问 <a href="/categories/">分类页面</a> 查看所有分类及其对应的文章列表。</p>
-<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>此外，这篇文章还添加了 <strong>标签1</strong> 和 <strong>标签2</strong>。标签功能可以帮助你更好地组织和查找文章。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这篇文章，你可以验证分类和标签功能是否正常工作。如果一切正常，你应该能够在分类页面中看到这篇文章出现在 <strong>分类1</strong> 和 <strong>分类2</strong> 下。</p>
+    <title>测试摘要功能</title>
+    <url>/2025/02/11/%E6%91%98%E8%A6%81/</url>
+    <content><![CDATA[<h2 id="文章开头部分"><a href="#文章开头部分" class="headerlink" title="文章开头部分"></a>文章开头部分</h2><p>这是文章的开头部分，它将显示在首页上。你可以通过访问文章页面查看更多内容。<span id="more"></span></p>
+<h2 id="文章中间部分"><a href="#文章中间部分" class="headerlink" title="文章中间部分"></a>文章中间部分</h2><p>这部分内容将不会显示在首页上，只有在文章页面中才会显示。你可以在这里添加更多的内容，例如文章的详细说明、分析等。</p>
+<h2 id="文章结尾部分"><a href="#文章结尾部分" class="headerlink" title="文章结尾部分"></a>文章结尾部分</h2><p>这是文章的结尾部分，它也不会显示在首页上。通过设置 <code>&lt;!--more--&gt;</code> 标签，你可以控制首页显示的内容长度。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这篇文章，你可以测试 NexT 主题的首页摘要功能是否正常工作。如果一切正常，你应该能够在首页看到文章的开头部分和自动摘要内容，而中间和结尾部分将只在文章页面中显示。</p>
 ]]></content>
       <categories>
-        <category>分类1</category>
-        <category>分类2</category>
+        <category>测试</category>
       </categories>
       <tags>
-        <tag>标签1</tag>
-        <tag>标签2</tag>
+        <tag>摘要</tag>
+        <tag>测试</tag>
       </tags>
   </entry>
 </search>
