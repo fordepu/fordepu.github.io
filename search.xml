@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>测试摘要功能</title>
-    <url>/2025/02/11/%E6%91%98%E8%A6%81/</url>
-    <content><![CDATA[<h2 id="文章开头部分"><a href="#文章开头部分" class="headerlink" title="文章开头部分"></a>文章开头部分</h2><p>这是文章的开头部分，它将显示在首页上。你可以通过访问文章页面查看更多内容。<span id="more"></span></p>
-<h2 id="文章中间部分"><a href="#文章中间部分" class="headerlink" title="文章中间部分"></a>文章中间部分</h2><p>这部分内容将不会显示在首页上，只有在文章页面中才会显示。你可以在这里添加更多的内容，例如文章的详细说明、分析等。</p>
-<h2 id="文章结尾部分"><a href="#文章结尾部分" class="headerlink" title="文章结尾部分"></a>文章结尾部分</h2><p>这是文章的结尾部分，它也不会显示在首页上。通过设置 <code>&lt;!--more--&gt;</code> 标签，你可以控制首页显示的内容长度。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这篇文章，你可以测试 NexT 主题的首页摘要功能是否正常工作。如果一切正常，你应该能够在首页看到文章的开头部分和自动摘要内容，而中间和结尾部分将只在文章页面中显示。</p>
-]]></content>
-      <categories>
-        <category>测试</category>
-      </categories>
-      <tags>
-        <tag>摘要</tag>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2025/02/11/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -33,5 +17,21 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>测试摘要功能</title>
+    <url>/2025/02/11/%E6%91%98%E8%A6%81/</url>
+    <content><![CDATA[<h2 id="文章开头部分"><a href="#文章开头部分" class="headerlink" title="文章开头部分"></a>文章开头部分</h2><p>这是文章的开头部分，它将显示在首页上。你可以通过访问文章页面查看更多内容。<span id="more"></span></p>
+<h2 id="文章中间部分"><a href="#文章中间部分" class="headerlink" title="文章中间部分"></a>文章中间部分</h2><p>这部分内容将不会显示在首页上，只有在文章页面中才会显示。你可以在这里添加更多的内容，例如文章的详细说明、分析等。</p>
+<h2 id="文章结尾部分"><a href="#文章结尾部分" class="headerlink" title="文章结尾部分"></a>文章结尾部分</h2><p>这是文章的结尾部分，它也不会显示在首页上。通过设置 <code>&lt;!--more--&gt;</code> 标签，你可以控制首页显示的内容长度。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这篇文章，你可以测试 NexT 主题的首页摘要功能是否正常工作。如果一切正常，你应该能够在首页看到文章的开头部分和自动摘要内容，而中间和结尾部分将只在文章页面中显示。</p>
+]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+      <tags>
+        <tag>摘要</tag>
+        <tag>测试</tag>
+      </tags>
   </entry>
 </search>
