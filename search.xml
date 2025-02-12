@@ -19,6 +19,18 @@
 ]]></content>
   </entry>
   <entry>
+    <title>图片测试</title>
+    <url>/2025/02/12/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="图片显示测试"><a href="#图片显示测试" class="headerlink" title="图片显示测试"></a>图片显示测试</h1><img title src="/2025/02/12/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/leaves.jpg" alt="图片" width="613">
+]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+      <tags>
+        <tag>图片</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>测试摘要功能</title>
     <url>/2025/02/11/%E6%91%98%E8%A6%81/</url>
     <content><![CDATA[<h2 id="文章开头部分"><a href="#文章开头部分" class="headerlink" title="文章开头部分"></a>文章开头部分</h2><p>这是文章的开头部分，它将显示在首页上。你可以通过访问文章页面查看更多内容。<span id="more"></span></p>

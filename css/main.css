@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffad59;
+  background: #b5bb71;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1243,6 +1243,8 @@ pre .javascript .function {
   margin: 0;
   padding-bottom: 20px;
   padding-left: 0;
+  text-decoration: none;
+  border-bottom: none;
 }
 .sidebar-nav li {
   border-bottom: 1px solid transparent;
@@ -1510,6 +1512,14 @@ pre .javascript .function {
     left: 20px;
     opacity: 0.8;
   }
+}
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+}
+.post-body p a:hover {
+  color: #fc6423;
+  border-bottom: none;
 }
 .post-body {
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -2424,6 +2434,7 @@ ul.breadcrumb li + li:last-child {
   background: transparent;
   margin: 5px 10px;
   padding: initial;
+  text-decoration: none;
 }
 .sub-menu .menu-item a:hover,
 .sub-menu .menu-item span.exturl:hover {
@@ -2433,6 +2444,7 @@ ul.breadcrumb li + li:last-child {
 .sub-menu .menu-item-active a {
   border-bottom-color: #fc6423;
   color: #fc6423;
+  text-decoration: none;
 }
 .sub-menu .menu-item-active a:hover {
   border-bottom-color: #fc6423;
@@ -2553,6 +2565,10 @@ ul.breadcrumb li + li:last-child {
   text-shadow: 0 0 1px rgba(255,255,255,0.8), 0 0 5px rgba(255,255,255,0.8);
 }
 /* 雪花 END */
+/* 侧边栏去除下划线 */
+a {
+  border-bottom: none;
+}
 @-moz-keyframes snowflakeFallRotate {
   0% {
     transform: translateY(0) translateX(0) rotate(0);
