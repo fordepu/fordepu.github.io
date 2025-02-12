@@ -1193,7 +1193,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #cbff47;
+  background: #1d53e8;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1582,6 +1582,7 @@ pre .javascript .function {
   margin-top: 60px;
   margin-bottom: 60px;
   padding: 25px;
+  border-radius: 10px;
   -webkit-box-shadow: 0 0 5px #292421;
   -moz-box-shadow: 0 0 5px #292421;
 }
@@ -1712,10 +1713,7 @@ pre .javascript .function {
 }
 .post-eof {
   background: #ccc;
-  height: 1px;
-  margin: 80px auto 60px;
   text-align: center;
-  width: 8%;
 }
 .post-block:last-of-type .post-eof {
   display: none;
@@ -2602,7 +2600,7 @@ a {
   border-bottom: none;
 }
 .content-wrap {
-  opacity: 0.93;
+  opacity: 0.72;
 }
 @-moz-keyframes snowflakeFallRotate {
   0% {
