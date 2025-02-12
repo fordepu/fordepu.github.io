@@ -1193,7 +1193,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff9a59;
+  background: #cbff47;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2602,7 +2602,7 @@ a {
   border-bottom: none;
 }
 .content-wrap {
-  opacity: 0.5;
+  opacity: 0.93;
 }
 @-moz-keyframes snowflakeFallRotate {
   0% {
