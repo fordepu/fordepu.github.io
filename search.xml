@@ -6,6 +6,8 @@
     <content><![CDATA[<h2 id="一、git安装"><a href="#一、git安装" class="headerlink" title="一、git安装"></a>一、git安装</h2><h3 id="1-ubuntu使用"><a href="#1-ubuntu使用" class="headerlink" title="1. ubuntu使用"></a>1. ubuntu使用</h3><p> <code>sudo apt-get install git</code>，使用<code>git --version</code>查看是否安装成功.</p>
 <h3 id="2-设置邮箱与用户名"><a href="#2-设置邮箱与用户名" class="headerlink" title="2. 设置邮箱与用户名"></a>2. 设置邮箱与用户名</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;your_email@example.com&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git config --list //查看是否设置成功</span><br></pre></td></tr></table></figure>
 
+<h3 id="3-设置全局编译器"><a href="#3-设置全局编译器" class="headerlink" title="3. 设置全局编译器"></a>3. 设置全局编译器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.editor <span class="string">&quot;vim&quot;</span> // 设置编译器为vim,否则默认为nano</span><br></pre></td></tr></table></figure>
+
 <h2 id="二、配置ssh-key"><a href="#二、配置ssh-key" class="headerlink" title="二、配置ssh key"></a>二、配置ssh key</h2><h3 id="1-生成ssh-key-使用邮箱作为注释"><a href="#1-生成ssh-key-使用邮箱作为注释" class="headerlink" title="1. 生成ssh key,使用邮箱作为注释"></a>1. 生成ssh key,使用邮箱作为注释</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxx@xxx.com&quot;</span></span><br><span class="line">//执行后一直回车即可</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-复制ssh-key中的内容"><a href="#2-复制ssh-key中的内容" class="headerlink" title="2. 复制ssh key中的内容"></a>2. 复制ssh key中的内容</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br><span class="line"><span class="built_in">cat</span> id_rsa.pub</span><br></pre></td></tr></table></figure>
@@ -27,7 +29,7 @@
 <p>    会在项目根目录下创建一个隐藏文件.git</p>
 <h3 id="2-git三个区域"><a href="#2-git三个区域" class="headerlink" title="2. git三个区域"></a>2. git三个区域</h3><h4 id="2-1-工作区"><a href="#2-1-工作区" class="headerlink" title="2.1 工作区"></a>2.1 工作区</h4><p>        实际开发时操作的文件夹</p>
 <h4 id="2-2-暂存区"><a href="#2-2-暂存区" class="headerlink" title="2.2 暂存区"></a>2.2 暂存区</h4><p>        保存之前的准备区域(暂存改动过的文件)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 文件路径 //暂存指定文件</span><br><span class="line">git add . //暂存所用改动的文件</span><br><span class="line">git ls-files //查看暂存了哪些文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 文件路径 //暂存指定文件</span><br><span class="line">git add . //暂存所用改动的文件</span><br><span class="line">git ls-files //查看所有暂存区中的文件</span><br></pre></td></tr></table></figure>
 
 <p>        暂存区 <strong>恢复</strong> 工作区</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git restore 目标文件路径</span><br></pre></td></tr></table></figure>
@@ -57,6 +59,26 @@
 </li>
 </ul>
 <p>   详细区别见<a href="https://blog.csdn.net/2301_77946674/article/details/142850909">博客</a> ,使用场景见<a href="https://blog.csdn.net/liaomingwu/article/details/121588217">博客</a>  </p>
+<h3 id="5-忽略文件"><a href="#5-忽略文件" class="headerlink" title="5. 忽略文件"></a>5. 忽略文件</h3><p>    .gitignore可以让git彻底忽略跟踪指定文件。目的是让git仓库更小更快，避免重复无异议的文件管理。</p>
+<p>    在项目根目录下创建.gitignore文件，匹配想要忽略的文件。并且git会自动匹配对应名称的文件夹或文件。</p>
+<p>    <strong>注意:</strong> <strong>如果要忽略的文件已在暂存区中跟踪过，那么使用<code>git add .</code>并不会删除暂存区的文件。此时如果想要忽略相应文件，但是又并不想删除工作区中对应的文件，可以使用<code>git rm -f --cached 文件路径</code>来删除暂存区中的文件,再使用<code>git add .</code>此时暂存区中就不会再有想要忽略的文件了。</strong></p>
+<h3 id="6-分支"><a href="#6-分支" class="headerlink" title="6. 分支"></a>6. 分支</h3><p>    1. 概念: 本质上是指向提交节点的可变指针，默认名字是master</p>
+<p>    2. 注意: HEAD指针影响工作区&#x2F;暂存区的代码状态,即工作区与暂存区的内容为HEAD指针的版本的内容</p>
+<p>    3. 场景: 开发新需求&#x2F;修复BUG时，保证主线代码随时可用，多人协同开发提高效率</p>
+<h4 id="6-1-指令"><a href="#6-1-指令" class="headerlink" title="6.1 指令"></a>6.1 指令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch 分支名 // 创建分支</span><br><span class="line">git checkout 分支名 // 切换分支(HEAD会指向切换的分支)</span><br><span class="line">git checkout -b 分支名 // 创建分支并切换到该分支</span><br><span class="line"></span><br><span class="line">git branch // 查看有哪些分支</span><br><span class="line">git branch -d 分支名 // 安全删除本地分支</span><br><span class="line">git branch -D 分支名 // 强制删除本地分支</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-合并指令"><a href="#6-2-合并指令" class="headerlink" title="6.2 合并指令"></a>6.2 合并指令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout master // 切回到要合入的分支</span><br><span class="line">git merge 分支名 // 合并其他分支</span><br><span class="line">git branch -d 分支名 // 安全删除完成合并的分支指针</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-3-合并与提交"><a href="#6-3-合并与提交" class="headerlink" title="6.3 合并与提交"></a>6.3 合并与提交</h4><p>    原分支产生新的提交记录后再合并回去后，自动使用多个快照记录合并后产生一次新的提交,大致情况如下图所示</p>
+<img title src="/2025/02/12/git/t03.png" alt="合并" data-align="center" width="381">
+
+<p>    在合并时，如果没有冲突会进入一个vim编辑器页面，输入的内容就是此次合并提交后的新提交的名字，可以选择默认的，也可以自定义。当然也可使用<code>git merge -m &#39;版本名&#39;  分支名</code>，来进行合并，这样就不会进入vim页面。合并后使用<code>git branch -d 分支名</code>删除被合并的分支</p>
+<p>    <strong>冲突</strong>  两个分支对同一个文件的同一处代码进行了修改后，合并便会产生冲突,解决完冲突后需要使用<code>git add .</code>缓存更改,再使用<code>git commit -m 提交名</code>来创建一个新的版本快照</p>
+<h2 id="四、远程仓库"><a href="#四、远程仓库" class="headerlink" title="四、远程仓库"></a>四、远程仓库</h2><h3 id="1-创建远程仓库"><a href="#1-创建远程仓库" class="headerlink" title="1. 创建远程仓库"></a>1. 创建远程仓库</h3><p>    在github中创建一个仓库，因为之前设置了ssh key，所以复制仓库的ssh链接。而ssh key的方便之处就在于使用私人仓库时每次无需输入密码。</p>
+<h3 id="2-添加远程仓库地址"><a href="#2-添加远程仓库地址" class="headerlink" title="2. 添加远程仓库地址"></a>2. 添加远程仓库地址</h3><p>    在项目根目录中，使用<code>git remot</code>命令进行添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin 远程仓库ssh地址 // 创建地址,origin为远程仓库的别名</span><br><span class="line">git remote set-url origin 新地址 // 修改远程仓库origin地址</span><br><span class="line">git remote remove origin // 移除origin远程仓库</span><br><span class="line">git remote -v // 查看是否设置成功</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-推送代码"><a href="#3-推送代码" class="headerlink" title="3. 推送代码"></a>3. 推送代码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin master // 推送代码到远程的master分支下</span><br><span class="line">git push -u origin master // 使用 -u 后将本地分支与远程分支关联起来,之后可直接使用</span><br><span class="line">                          // git pull 与 git push</span><br><span class="line"></span><br><span class="line">git push --set-upstream origin master:master</span><br><span class="line">// 完整写法                     本地分支 远程分支</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>git</category>
