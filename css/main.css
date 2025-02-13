@@ -1193,7 +1193,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #c7a1b5;
+  background: #70ffb4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2601,6 +2601,14 @@ a {
 }
 .content-wrap {
   opacity: 0.72;
+}
+/* 设置壁纸 */
+body {
+  background: url("/images/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 @-moz-keyframes snowflakeFallRotate {
   0% {
