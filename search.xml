@@ -3,50 +3,60 @@
   <entry>
     <title>git使用</title>
     <url>/2025/02/12/git/</url>
-    <content><![CDATA[<h2 id="一、-git安装"><a href="#一、-git安装" class="headerlink" title="一、 git安装"></a>一、 git安装</h2><h5 id="1-ubuntu使用"><a href="#1-ubuntu使用" class="headerlink" title="1. ubuntu使用"></a>1. ubuntu使用</h5><p> <code>sudo apt-get install git</code>，使用<code>git --version</code>查看是否安装成功.</p>
-<h5 id="2-设置邮箱与用户名"><a href="#2-设置邮箱与用户名" class="headerlink" title="2. 设置邮箱与用户名"></a>2. 设置邮箱与用户名</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;your_email@example.com&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git config --list //查看是否设置成功</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="一、git安装"><a href="#一、git安装" class="headerlink" title="一、git安装"></a>一、git安装</h2><h3 id="1-ubuntu使用"><a href="#1-ubuntu使用" class="headerlink" title="1. ubuntu使用"></a>1. ubuntu使用</h3><p> <code>sudo apt-get install git</code>，使用<code>git --version</code>查看是否安装成功.</p>
+<h3 id="2-设置邮箱与用户名"><a href="#2-设置邮箱与用户名" class="headerlink" title="2. 设置邮箱与用户名"></a>2. 设置邮箱与用户名</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;your_email@example.com&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git config --list //查看是否设置成功</span><br></pre></td></tr></table></figure>
 
-<h2 id="二、配置ssh-key"><a href="#二、配置ssh-key" class="headerlink" title="二、配置ssh key"></a>二、配置ssh key</h2><h5 id="1-生成ssh-key-使用邮箱作为注释"><a href="#1-生成ssh-key-使用邮箱作为注释" class="headerlink" title="1. 生成ssh key,使用邮箱作为注释"></a>1. 生成ssh key,使用邮箱作为注释</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxx@xxx.com&quot;</span></span><br><span class="line">//执行后一直回车即可</span><br></pre></td></tr></table></figure>
+<h2 id="二、配置ssh-key"><a href="#二、配置ssh-key" class="headerlink" title="二、配置ssh key"></a>二、配置ssh key</h2><h3 id="1-生成ssh-key-使用邮箱作为注释"><a href="#1-生成ssh-key-使用邮箱作为注释" class="headerlink" title="1. 生成ssh key,使用邮箱作为注释"></a>1. 生成ssh key,使用邮箱作为注释</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;xxx@xxx.com&quot;</span></span><br><span class="line">//执行后一直回车即可</span><br></pre></td></tr></table></figure>
 
-<h5 id="2-复制ssh-key中的内容"><a href="#2-复制ssh-key中的内容" class="headerlink" title="2. 复制ssh key中的内容"></a>2. 复制ssh key中的内容</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br><span class="line"><span class="built_in">cat</span> id_rsa.pub</span><br></pre></td></tr></table></figure>
+<h3 id="2-复制ssh-key中的内容"><a href="#2-复制ssh-key中的内容" class="headerlink" title="2. 复制ssh key中的内容"></a>2. 复制ssh key中的内容</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh</span><br><span class="line"><span class="built_in">cat</span> id_rsa.pub</span><br></pre></td></tr></table></figure>
 
-<h5 id="3-ssh目录下创建config文件"><a href="#3-ssh目录下创建config文件" class="headerlink" title="3. ~&#x2F;.ssh目录下创建config文件"></a>3. ~&#x2F;.ssh目录下创建config文件</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.ssh/config //创建文件</span><br></pre></td></tr></table></figure>
+<h3 id="3-ssh目录下创建config文件"><a href="#3-ssh目录下创建config文件" class="headerlink" title="3. ~&#x2F;.ssh目录下创建config文件"></a>3. ~&#x2F;.ssh目录下创建config文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.ssh/config //创建文件</span><br></pre></td></tr></table></figure>
 
 <p>     config文件添加如下内容</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  Hostname ssh.github.com</span><br><span class="line">  Port 443</span><br><span class="line">  IdentityFile ~/.ssh/id_ed25519</span><br></pre></td></tr></table></figure>
 
-<h5 id="4-在github上添加公钥"><a href="#4-在github上添加公钥" class="headerlink" title="4. 在github上添加公钥"></a>4. 在github上添加公钥</h5><img title src="/2025/02/12/git/t01.png" alt="添加公钥" width="680">
+<h3 id="4-在github上添加公钥"><a href="#4-在github上添加公钥" class="headerlink" title="4. 在github上添加公钥"></a>4. 在github上添加公钥</h3><img title src="/2025/02/12/git/t01.png" alt="添加公钥" width="680">
 
-<h5 id="5-验证测试是否成功"><a href="#5-验证测试是否成功" class="headerlink" title="5. 验证测试是否成功"></a>5. 验证测试是否成功</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<h3 id="5-验证测试是否成功"><a href="#5-验证测试是否成功" class="headerlink" title="5. 验证测试是否成功"></a>5. 验证测试是否成功</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 
 <p>    显示如下信息，代表成功</p>
 <p><img src="/2025/02/12/git/t02.png" alt="验证"></p>
-<h2 id="三、本地使用git"><a href="#三、本地使用git" class="headerlink" title="三、本地使用git"></a>三、本地使用git</h2><h5 id="1-初始化仓库"><a href="#1-初始化仓库" class="headerlink" title="1. 初始化仓库"></a>1. 初始化仓库</h5><p>    在项目根目录下使用</p>
+<h2 id="三、本地使用git"><a href="#三、本地使用git" class="headerlink" title="三、本地使用git"></a>三、本地使用git</h2><h3 id="1-初始化仓库"><a href="#1-初始化仓库" class="headerlink" title="1. 初始化仓库"></a>1. 初始化仓库</h3><p>    在项目根目录下使用</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 
 <p>    会在项目根目录下创建一个隐藏文件.git</p>
-<h5 id="2-git三个区域"><a href="#2-git三个区域" class="headerlink" title="2. git三个区域"></a>2. git三个区域</h5><h6 id="2-1-工作区"><a href="#2-1-工作区" class="headerlink" title="2.1 工作区"></a>2.1 工作区</h6><p>        实际开发时操作的文件夹</p>
-<h6 id="2-2-暂存区"><a href="#2-2-暂存区" class="headerlink" title="2.2 暂存区"></a>2.2 暂存区</h6><p>        保存之前的准备区域(暂存改动过的文件)</p>
+<h3 id="2-git三个区域"><a href="#2-git三个区域" class="headerlink" title="2. git三个区域"></a>2. git三个区域</h3><h4 id="2-1-工作区"><a href="#2-1-工作区" class="headerlink" title="2.1 工作区"></a>2.1 工作区</h4><p>        实际开发时操作的文件夹</p>
+<h4 id="2-2-暂存区"><a href="#2-2-暂存区" class="headerlink" title="2.2 暂存区"></a>2.2 暂存区</h4><p>        保存之前的准备区域(暂存改动过的文件)</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 文件路径 //暂存指定文件</span><br><span class="line">git add . //暂存所用改动的文件</span><br><span class="line">git ls-files //查看暂存了哪些文件</span><br></pre></td></tr></table></figure>
 
 <p>        暂存区 <strong>恢复</strong> 工作区</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git restore 目标文件路径</span><br></pre></td></tr></table></figure>
 
-<h6 id="删除暂存区的文件"><a href="#删除暂存区的文件" class="headerlink" title="删除暂存区的文件"></a>删除暂存区的文件</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached 目标文件路径</span><br></pre></td></tr></table></figure>
+<p>        删除暂存区的文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached 目标文件路径</span><br></pre></td></tr></table></figure>
 
-<h6 id="2-3-版本库"><a href="#2-3-版本库" class="headerlink" title="2.3 版本库"></a>2.3 版本库</h6><p>        提交并保存暂存中的内容，产生一个版本快照</p>
+<h4 id="2-3-版本库"><a href="#2-3-版本库" class="headerlink" title="2.3 版本库"></a>2.3 版本库</h4><p>        提交并保存暂存中的内容，产生一个版本快照</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;注释&quot;</span> //提交并保存，产生版本快照</span><br></pre></td></tr></table></figure>
 
 <p>        查看已提交的快照</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> // 查看详细信息,显示完整哈希值</span><br><span class="line">git <span class="built_in">log</span> --oneline // 查看简单提交信息,显示哈希值前7位</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> // 查看详细信息,显示完整哈希值</span><br><span class="line">git <span class="built_in">log</span> --oneline // 查看简单提交信息,显示哈希值前7位</span><br><span class="line">git reflog --oneline // 在回退版本后查看所有的版本</span><br></pre></td></tr></table></figure>
 
-<h5 id="3-git文件种状态"><a href="#3-git文件种状态" class="headerlink" title="3. git文件种状态"></a>3. git文件种状态</h5><h6 id="3-1-未跟踪-U-新文件，从未被git管理过"><a href="#3-1-未跟踪-U-新文件，从未被git管理过" class="headerlink" title="3.1 未跟踪(U): 新文件，从未被git管理过"></a>3.1 未跟踪(U): 新文件，从未被git管理过</h6><h6 id="3-2-已跟踪-git已经知道和管理过的文件"><a href="#3-2-已跟踪-git已经知道和管理过的文件" class="headerlink" title="3.2 已跟踪: git已经知道和管理过的文件"></a>3.2 已跟踪: git已经知道和管理过的文件</h6><h6 id="3-3-新添加-A-第一次被git暂存"><a href="#3-3-新添加-A-第一次被git暂存" class="headerlink" title="3.3 新添加(A): 第一次被git暂存"></a>3.3 新添加(A): 第一次被git暂存</h6><h6 id="3-4-未修改-‘’-三个区域统一"><a href="#3-4-未修改-‘’-三个区域统一" class="headerlink" title="3.4 未修改(‘’): 三个区域统一"></a>3.4 未修改(‘’): 三个区域统一</h6><h6 id="3-5-已修改-M-工作区内容发生变化"><a href="#3-5-已修改-M-工作区内容发生变化" class="headerlink" title="3.5 已修改(M): 工作区内容发生变化"></a>3.5 已修改(M): 工作区内容发生变化</h6><p>使用git status查看文件状态</p>
+<h3 id="3-git文件种状态"><a href="#3-git文件种状态" class="headerlink" title="3. git文件种状态"></a>3. git文件种状态</h3><h4 id="3-1-未跟踪-U-新文件，从未被git管理过"><a href="#3-1-未跟踪-U-新文件，从未被git管理过" class="headerlink" title="3.1 未跟踪(U): 新文件，从未被git管理过"></a>3.1 未跟踪(U): 新文件，从未被git管理过</h4><h4 id="3-2-已跟踪-git已经知道和管理过的文件"><a href="#3-2-已跟踪-git已经知道和管理过的文件" class="headerlink" title="3.2 已跟踪: git已经知道和管理过的文件"></a>3.2 已跟踪: git已经知道和管理过的文件</h4><h4 id="3-3-新添加-A-第一次被git暂存"><a href="#3-3-新添加-A-第一次被git暂存" class="headerlink" title="3.3 新添加(A): 第一次被git暂存"></a>3.3 新添加(A): 第一次被git暂存</h4><h4 id="3-4-未修改-‘’-三个区域统一"><a href="#3-4-未修改-‘’-三个区域统一" class="headerlink" title="3.4 未修改(‘’): 三个区域统一"></a>3.4 未修改(‘’): 三个区域统一</h4><h4 id="3-5-已修改-M-工作区内容发生变化"><a href="#3-5-已修改-M-工作区内容发生变化" class="headerlink" title="3.5 已修改(M): 工作区内容发生变化"></a>3.5 已修改(M): 工作区内容发生变化</h4><p>使用git status查看文件状态</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br><span class="line">git status -s // 使输出内容更简单</span><br></pre></td></tr></table></figure>
 
-<h5 id="4-git回退版本"><a href="#4-git回退版本" class="headerlink" title="4. git回退版本"></a>4. git回退版本</h5><p>    3种回退命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft 版本号 // 版本号通过git <span class="built_in">log</span> --oneline查看</span><br><span class="line">git reset --hard 版本号</span><br><span class="line">git reset --mixed 版本号 // 默认mixed,等同于git reset</span><br></pre></td></tr></table></figure>
+<h3 id="4-git回退版本"><a href="#4-git回退版本" class="headerlink" title="4. git回退版本"></a>4. git回退版本</h3><p>    3种回退命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft 版本号 // 版本号通过git <span class="built_in">log</span> --oneline查看</span><br><span class="line">git reset --hard 版本号</span><br><span class="line">git reset --mixed 版本号 // 默认mixed,等同于git reset</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git reflog --oneline //回退版本后，可以使用命令查看所有的版本号，进行恢复</span><br></pre></td></tr></table></figure>
 
-<p>    区别见<a href="https://blog.csdn.net/2301_77946674/article/details/142850909">博客</a> ,使用场景见<a href="https://blog.csdn.net/liaomingwu/article/details/121588217">博客</a>   </p>
+<p>    总结: </p>
+<ul>
+<li><p>–soft 对工作区与暂存区的内容都不会改变,主要用于将不必要的commit进行合并</p>
+</li>
+<li><p>–mixed 会保留工作区的内容,清空暂存区的内容,主要用于修改错误的代码</p>
+</li>
+<li><p>–hard 会清空工作区与暂存区的内容,适用于重置节点后所用内容都不想留下的情况</p>
+</li>
+</ul>
+<p>   详细区别见<a href="https://blog.csdn.net/2301_77946674/article/details/142850909">博客</a> ,使用场景见<a href="https://blog.csdn.net/liaomingwu/article/details/121588217">博客</a>  </p>
 ]]></content>
       <categories>
         <category>git</category>
