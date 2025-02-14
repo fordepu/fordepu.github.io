@@ -69,6 +69,10 @@
 
 <h4 id="6-2-合并指令"><a href="#6-2-合并指令" class="headerlink" title="6.2 合并指令"></a>6.2 合并指令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout master // 切回到要合入的分支</span><br><span class="line">git merge 分支名 // 合并其他分支</span><br><span class="line">git branch -d 分支名 // 安全删除完成合并的分支指针</span><br></pre></td></tr></table></figure>
 
+<p><strong>注意：</strong> Fast forward合并方式是直接将HEAD指针移向要合并分支的最新版本，这种模式下，删除分支后，会丢失分支信息。</p>
+<p>此时可以使用<code>--no-ff</code>进行合并，这样不会丢失分支信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --no-ff 分支名 // 禁用Fast forward合并方式</span><br></pre></td></tr></table></figure>
+
 <h4 id="6-3-合并与提交"><a href="#6-3-合并与提交" class="headerlink" title="6.3 合并与提交"></a>6.3 合并与提交</h4><p>    原分支产生新的提交记录后再合并回去后，自动使用多个快照记录合并后产生一次新的提交,大致情况如下图所示</p>
 <img title src="/2025/02/12/git/t03.png" alt="分支" data-align="center" width="393">
 
