@@ -65,13 +65,15 @@
 <h3 id="6-分支"><a href="#6-分支" class="headerlink" title="6. 分支"></a>6. 分支</h3><p>    1. 概念: 本质上是指向提交节点的可变指针，默认名字是master</p>
 <p>    2. 注意: HEAD指针影响工作区&#x2F;暂存区的代码状态,即工作区与暂存区的内容为HEAD指针的版本的内容</p>
 <p>    3. 场景: 开发新需求&#x2F;修复BUG时，保证主线代码随时可用，多人协同开发提高效率</p>
-<h4 id="6-1-指令"><a href="#6-1-指令" class="headerlink" title="6.1 指令"></a>6.1 指令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch 分支名 // 创建分支</span><br><span class="line">git checkout 分支名 // 切换分支(HEAD会指向切换的分支)</span><br><span class="line">git checkout -b 分支名 // 创建分支并切换到该分支</span><br><span class="line"></span><br><span class="line">git branch // 查看有哪些分支</span><br><span class="line">git branch -d 分支名 // 安全删除本地分支</span><br><span class="line">git branch -D 分支名 // 强制删除本地分支</span><br></pre></td></tr></table></figure>
+<h4 id="6-1-指令"><a href="#6-1-指令" class="headerlink" title="6.1 指令"></a>6.1 指令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch 分支名 // 创建分支</span><br><span class="line">git checkout 分支名 // 切换分支(HEAD会指向切换的分支)</span><br><span class="line">git checkout -b 分支名 // 创建分支并切换到该分支</span><br><span class="line">git switch 分支名 // 创建分支</span><br><span class="line">git switch -c 分支名 // 创建并切换分支</span><br><span class="line"></span><br><span class="line">git branch // 查看有哪些分支</span><br><span class="line">git branch -d 分支名 // 安全删除本地分支</span><br><span class="line">git branch -D 分支名 // 强制删除本地分支</span><br></pre></td></tr></table></figure>
 
 <h4 id="6-2-合并指令"><a href="#6-2-合并指令" class="headerlink" title="6.2 合并指令"></a>6.2 合并指令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout master // 切回到要合入的分支</span><br><span class="line">git merge 分支名 // 合并其他分支</span><br><span class="line">git branch -d 分支名 // 安全删除完成合并的分支指针</span><br></pre></td></tr></table></figure>
 
 <h4 id="6-3-合并与提交"><a href="#6-3-合并与提交" class="headerlink" title="6.3 合并与提交"></a>6.3 合并与提交</h4><p>    原分支产生新的提交记录后再合并回去后，自动使用多个快照记录合并后产生一次新的提交,大致情况如下图所示</p>
-<img title src="/2025/02/12/git/t03.png" alt="合并" data-align="center" width="381">
+<img title src="/2025/02/12/git/t03.png" alt="分支" data-align="center" width="393">
 
+<p><strong>提示：</strong> 也可以使用<code>git log --graph --oneline</code>在vscode终端中显示分支，如下图所示</p>
+<p><img src="/2025/02/12/git/t04.png" alt="图形"></p>
 <p>    在合并时，如果没有冲突会进入一个vim编辑器页面，输入的内容就是此次合并提交后的新提交的名字，可以选择默认的，也可以自定义。当然也可使用<code>git merge -m &#39;版本名&#39;  分支名</code>，来进行合并，这样就不会进入vim页面。合并后使用<code>git branch -d 分支名</code>删除被合并的分支</p>
 <p>    <strong>冲突</strong>  两个分支对同一个文件的同一处代码进行了修改后，合并便会产生冲突,解决完冲突后需要使用<code>git add .</code>缓存更改,再使用<code>git commit -m 提交名</code>来创建一个新的版本快照</p>
 <h2 id="四、远程仓库"><a href="#四、远程仓库" class="headerlink" title="四、远程仓库"></a>四、远程仓库</h2><h3 id="1-创建远程仓库"><a href="#1-创建远程仓库" class="headerlink" title="1. 创建远程仓库"></a>1. 创建远程仓库</h3><p>    在github中创建一个仓库，因为之前设置了ssh key，所以复制仓库的ssh链接。而ssh key的方便之处就在于使用私人仓库时每次无需输入密码。</p>
@@ -79,6 +81,28 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin 远程仓库ssh地址 // 创建地址,origin为远程仓库的别名</span><br><span class="line">git remote set-url origin 新地址 // 修改远程仓库origin地址</span><br><span class="line">git remote remove origin // 移除origin远程仓库</span><br><span class="line">git remote -v // 查看是否设置成功</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-推送代码"><a href="#3-推送代码" class="headerlink" title="3. 推送代码"></a>3. 推送代码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin master // 推送代码到远程的master分支下</span><br><span class="line">git push -u origin master // 使用 -u 后将本地分支与远程分支关联起来,之后可直接使用</span><br><span class="line">                          // git pull 与 git push</span><br><span class="line"></span><br><span class="line">git push --set-upstream origin master:master</span><br><span class="line">// 完整写法                     本地分支 远程分支</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-克隆远程仓库"><a href="#4-克隆远程仓库" class="headerlink" title="4. 克隆远程仓库"></a>4. 克隆远程仓库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> 远程仓库地址</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意:</strong>  </p>
+<ul>
+<li><p>克隆后的本地仓库会自动建立好与远程仓库的链接，不再需要通过<code>git remote add origin 仓库地址</code></p>
+</li>
+<li><p>公开仓库可以随意克隆，推送需要身为仓库团队成员</p>
+</li>
+</ul>
+<h2 id="五、多人协同开发"><a href="#五、多人协同开发" class="headerlink" title="五、多人协同开发"></a>五、多人协同开发</h2><h3 id="1-指令"><a href="#1-指令" class="headerlink" title="1. 指令"></a>1. 指令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin master:master // 推送代码(git push)</span><br><span class="line">                本地分支 远程分支</span><br><span class="line">git pull origin master:master // 拉取代码(git pull)</span><br><span class="line">                远程分支 本地分支</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ul>
+<li><p><code>git pull origin master</code>等价于<code>git fetch origin master:master</code>获取远程分支到本地，加上<code>git merge origin/master</code>进行合并</p>
+</li>
+<li><p>多人协作时推送代码时，需要先使用<code>git pull</code>拉取远程仓库中最新的版本进行合并，再使用<code>git push</code>进行推送</p>
+</li>
+<li><p>合并没有关系的记录需要使用</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull --rebase 远程仓库别名 分支名</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>git</category>
