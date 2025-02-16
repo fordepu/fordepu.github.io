@@ -13,7 +13,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl daemon-reload</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart docker</span><br></pre></td></tr></table></figure>
 
 <p>使用<code>sudo docker run hello-world</code>进行测试</p>
-<h3 id="3-配置代理"><a href="#3-配置代理" class="headerlink" title="3. 配置代理"></a>3. 配置代理</h3><p>详细操作见<a href="https://neucrack.com/p/286">博客</a></p>
+<h3 id="3-配置代理"><a href="#3-配置代理" class="headerlink" title="3. 配置代理"></a>3. 配置代理</h3><p>详细操作见<a href="https://neucrack.com/p/286">博客 </a></p>
 <p>有了网络代理后，便不需要配置镜像源了</p>
 <p>在执行docker pull时，是由守护进程dockerd来执行。因此，代理需要配在dockerd的环境中。而这个环境，则是受systemd所管控，因此实际是systemd的配置。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /etc/systemd/system/docker.service.d</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">touch</span> /etc/systemd/system/docker.service.d/proxy.conf</span><br></pre></td></tr></table></figure>
@@ -39,6 +39,54 @@
 <li><strong><code>--network</code></strong>: 指定容器的网络模式。</li>
 <li><strong><code>--restart</code></strong>: 容器的重启策略（如 <code>no</code>、<code>on-failure</code>、<code>always</code>、<code>unless-stopped</code>)</li>
 <li><strong><code>-u</code></strong>: 指定用户。</li>
+</ul>
+<p><strong>注意：<code>docker run</code>会创建一个新的容器，而不是只是运行容器</strong></p>
+<p>详细指令见<a href="https://docs.docker.com/reference/cli/docker/">官网</a></p>
+<h3 id="2-数据卷挂载"><a href="#2-数据卷挂载" class="headerlink" title="2. 数据卷挂载"></a>2. 数据卷挂载</h3><p>因为在容器内部中，只有使容器运行起来的必备命令，并没有如<code>vim</code>,<code>vi</code>这样的命令，所以想要直接进入容器内，修改容器内中的文件比较困难。</p>
+<p>而<strong>数据卷</strong>是一个虚拟目录，是<strong>容器内部目录</strong>与<strong>宿主机目录</strong>之间映射的桥梁</p>
+<blockquote>
+<p><code>docker volume create</code>   创建数据卷</p>
+<p><code>docker volume ls</code>    查看所有数据卷</p>
+<p><code>docker volume rm</code>    删除数据卷</p>
+<p><code>docker volume inspect</code>    查看数据卷详情</p>
+<p><code>docker volume prune</code>    清除数据卷</p>
+</blockquote>
+<p><strong>注意：只有在<code>docker run</code>创建容器时，才能挂载</strong></p>
+<p>使用 <code>-v 数据卷:容器内目录</code> 进行挂载</p>
+<p><strong>挂载方式：</strong></p>
+<ul>
+<li>命名卷挂载：命名卷是由 Docker 管理的卷，具有一个唯一的名称。Docker 会自动为命名卷分配存储位置，通常在 <code>/var/lib/docker/volumes/</code> 目录下。实例：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -v my_volume:/container/path ubuntu</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>绑定挂载：绑定挂载允许你将宿主机上的目录或文件直接映射到容器内部。这种方式非常适合开发环境，因为它允许实时同步宿主机和容器之间的文件。<strong>注意：宿主机上的路径必须提前创建。且本地目录必须以<code>/</code>或<code>./</code>开头，如果直接以名称开头，会被识别为数据卷而非本地目录</strong>   </p>
+<p>示例：自定义创建并挂载<code>mysql</code>容器</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name mysql -p 3307:3306 \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=123 \</span><br><span class="line">-v ./mysql/init:/docker-entrypoint-initdb.d \</span><br><span class="line">-v ./mysql/data:/var/lib/mysql \</span><br><span class="line">-v ./mysql/conf:/etc/mysql/conf.d \</span><br><span class="line">--user $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) \</span><br><span class="line">mysql</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>匿名卷：匿名卷是没有名称的卷，由 Docker 自动创建，通常用于临时存储数据。且匿名卷的数据存储在宿主机的 <code>/var/lib/docker/volumes/</code> 目录下，示例：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -v /container/path ubuntu</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：无论是哪种挂载方式，只要挂载成功后，真实数据实际上都存放在宿主机中，在容器内部的文件路径是映射的</strong></p>
+<h2 id="三、自定义镜像"><a href="#三、自定义镜像" class="headerlink" title="三、自定义镜像"></a>三、自定义镜像</h2><p>    镜像就是包含了应用程序、程序运行的系统函数库、运行配置等文件的文件包。构建镜像的过程实际就是把上述文件打包的过程</p>
+<h3 id="1-编写-Dockerfile"><a href="#1-编写-Dockerfile" class="headerlink" title="1. 编写 Dockerfile"></a>1. 编写 Dockerfile</h3><p>Dockerfile就是一个文本文件，其中包含一个个的指令(Instruction)，用指令来说明要执行什么操作来构建镜像。将来Docker可以根据Dockerfile帮我们构建镜像。常见指令如下</p>
+<p><img src="/2025/02/15/docker/t01.png" alt="指令"></p>
+<p>示例，我们可以基于Ubuntu基础镜像，利用Dockerfile描述镜像结构，也可以直接基于JDK为基础镜像，省略前面的步骤，如下图</p>
+<img src="/2025/02/15/docker/t02.png" title alt="示例" width="684">
+
+<h3 id="2-构建镜像"><a href="#2-构建镜像" class="headerlink" title="2. 构建镜像"></a>2. 构建镜像</h3><p>当编写好了Dockerfile，可以利用下面命令来构建镜像</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker build -t myImage:1.0 .</span><br></pre></td></tr></table></figure>
+
+<p>其中</p>
+<ul>
+<li><p><code>-t</code>:是给镜像起名，格式依然是repository:tag的格式，不指定tag时，默认为latest</p>
+</li>
+<li><p><code>.</code>: 是指定Dockerfile所在目录，如果就在当前目录，则指定为”.”</p>
+</li>
 </ul>
 ]]></content>
       <categories>
