@@ -123,12 +123,14 @@
 <p><img src="/2025/02/15/docker/t03.png" alt="指令"></p>
 <p><strong>注意：怎么使用<code>docker compose up</code>创建的，就要怎么使用<code>docker compose down</code>删除，示例</strong></p>
 <ul>
-<li><pre><code class="language-bash">docker compose up -d # 不使用任何Options参数创建
-docker compose down # 不使用任何Options参数删除
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- ```bash</span><br><span class="line">  # 使用Options参数创建</span><br><span class="line">  docker compose -p hm -f ~/DockerLearning/docker-compose.yml up -d</span><br><span class="line">  # 使用相应Options参数-p删除</span><br><span class="line">  docker compose -p hm down</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
+<li>不使用参数创建</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker compose up -d <span class="comment"># 不使用任何Options参数创建</span></span><br><span class="line">docker compose down <span class="comment"># 不使用任何Options参数删除</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用参数创建</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用Options参数创建</span></span><br><span class="line">docker compose -p hm -f ~/DockerLearning/docker-compose.yml up -d</span><br><span class="line"><span class="comment"># 使用相应Options参数-p删除</span></span><br><span class="line">docker compose -p hm down</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>docker</category>
